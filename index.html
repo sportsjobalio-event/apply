@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>참석 신청서</title>
 <meta property="og:title" content="제 1회 스잡알 고등학교 동창회 - 참석 신청서 💾">
-<meta property="og:description" content="2026. 12. 26 (토) PM 6:00 · 칼스버그 비어라운지">
+<meta property="og:description" content="2026. 12. 26 (토) PM 5:00 · 을지로3가역 근처">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/galmuri@2.40.0/dist/galmuri.css">
 <style>
 :root{--face:#c0c0c0;--hi:#fff;--lo:#808080;--dk:#000;--navy:#000080;--navy2:#1084d0;--font:"Galmuri11","Galmuri9",monospace}
@@ -47,6 +47,8 @@ input:focus,select:focus{background:#ffffe0}
 .radios{display:flex;gap:18px;padding:6px 0}
 .radios label{display:flex;align-items:center;gap:6px;cursor:pointer;font-size:14px}
 input[type=radio],input[type=checkbox]{width:18px;height:18px;accent-color:#000080}
+.deadline{text-align:center;font-size:13px;background:#ffffe0;padding:8px;margin:-6px 0 14px;box-shadow:inset 1px 1px var(--lo),inset -1px -1px var(--hi)}
+.deadline b{color:#c00}
 .hint{font-size:11px;color:#666;margin-top:4px;line-height:1.5}
 .agree{display:flex;gap:8px;align-items:flex-start;font-size:12px;line-height:1.6;margin:4px 0 14px}
 .agree input{margin-top:3px;flex-shrink:0}
@@ -80,7 +82,8 @@ input[type=radio],input[type=checkbox]{width:18px;height:18px;accent-color:#0000
     <!-- 로고를 쓰려면 img/logo.png 를 같은 폴더에 두고 아래 줄 주석 해제
     <img class="logo" src="img/logo.png" alt="SPORTSJOB ALIO"> -->
     <h1>제 1회<br>스잡알 고등학교 동창회<br>참석 신청서</h1>
-    <p class="sub">2026. 12. 26 (토) PM 6:00<br>을지로3가역 근처</p>
+    <p class="sub">2026. 12. 26 (토) PM 5:00<br>을지로3가역 근처</p>
+    <p class="deadline">📌 신청 기한: <b>11월 22일 (일)</b>까지</p>
 
     <fieldset><legend>학생 기본정보</legend>
       <label class="f"><b>이름 <span class="req">*</span></b><input type="text" name="name" maxlength="20" required></label>
@@ -126,6 +129,8 @@ input[type=radio],input[type=checkbox]{width:18px;height:18px;accent-color:#0000
 // ★ Apps Script 웹앱 URL 을 여기에 붙여넣으세요 (비워두면 테스트 모드: 저장 안 됨)
 const ENDPOINT = "https://script.google.com/macros/s/AKfycbyWNg6OvPhi1TrQr7Yj9KasaqsBClE3mj0Jir9w5J_m9sNklQ3apEY6ALr7Ih2dA0_VHA/exec";
 
+// 신청 마감 (이 시각 이후엔 제출 막힘)
+const DEADLINE = new Date('2026-11-22T23:59:59+09:00');
 const f = document.getElementById('f'), err = document.getElementById('err'), send = document.getElementById('send');
 const tick=()=>{const d=new Date();document.getElementById('clock').textContent=String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0')};tick();setInterval(tick,30000);
 
@@ -151,6 +156,7 @@ function validate(){
 f.addEventListener('submit',async e=>{
   e.preventDefault(); err.textContent='';
   if(f.website.value) return; // 봇 차단
+  if(new Date()>DEADLINE){err.textContent='⚠ 신청이 마감되었습니다.';return}
   const m=validate(); if(m){err.textContent='⚠ '+m;return}
   send.disabled=true;
   const modal=document.getElementById('ok'); modal.classList.add('on');
