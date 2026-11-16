@@ -132,10 +132,13 @@ const ENDPOINT = "https://script.google.com/macros/s/AKfycbyWNg6OvPhi1TrQr7Yj9Ka
 // 신청 마감 (이 시각 이후엔 제출 막힘)
 const DEADLINE = new Date('2026-11-22T23:59:59+09:00');
 const f = document.getElementById('f'), err = document.getElementById('err'), send = document.getElementById('send');
+if(new Date()>DEADLINE){
+  f.innerHTML='<div class="marquee"><span>★☆ 제 1회 스잡알 고등학교 동창회 ★☆</span></div><h1>신청이<br>마감되었습니다</h1><p class="sub" style="margin-top:14px">많은 관심 감사합니다.<br>12월 26일 동창회에서 만나요!</p>';
+}
 const tick=()=>{const d=new Date();document.getElementById('clock').textContent=String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0')};tick();setInterval(tick,30000);
 
-f.career.addEventListener('input',()=>{f.career.value=f.career.value.replace(/\D/g,'')});
-f.phone.addEventListener('input',()=>{
+f.career?.addEventListener('input',()=>{f.career.value=f.career.value.replace(/\D/g,'')});
+f.phone?.addEventListener('input',()=>{
   const d=f.phone.value.replace(/\D/g,'').slice(0,11);
   f.phone.value=d.length>7?d.replace(/(\d{3})(\d{4})(\d+)/,'$1-$2-$3'):d.length>3?d.replace(/(\d{3})(\d+)/,'$1-$2'):d;
 });
