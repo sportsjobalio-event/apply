@@ -170,7 +170,7 @@ f.addEventListener('submit',async e=>{
   catch(x){ok=false}
   setTimeout(()=>{
     document.getElementById('okbody').innerHTML = ok
-      ? '<img class="frog" src="img/frog.png" alt=""><div><b>신청이 완료되었습니다!</b><br>확인 후 개별로 최종 안내드립니다'+(ENDPOINT?'':'<br><small style="color:#c00">(테스트 모드: 저장되지 않음)</small>')+'</div>'
+      ? '<img class="frog" src="img/frog.png" alt=""><div><b>신청이 완료되었습니다!</b><br>확인 후 개별로 최종 안내드립니다🏫'+(ENDPOINT?'':'<br><small style="color:#c00">(테스트 모드: 저장되지 않음)</small>')+'</div>'
       : '<div class="ico">⛔</div><div><b>전송에 실패했어요.</b><br>잠시 후 다시 시도해주세요.</div>';
     document.getElementById('okrow').style.display='block';
     document.getElementById('okbtn').onclick=()=>{modal.classList.remove('on'); if(ok){f.reset();} send.disabled=false; if(!ok)return;};
