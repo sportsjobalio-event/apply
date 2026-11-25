@@ -83,7 +83,7 @@ input[type=radio],input[type=checkbox]{width:18px;height:18px;accent-color:#0000
     <img class="logo" src="img/logo.png" alt="SPORTSJOB ALIO"> -->
     <h1>제 2회<br>스잡알 고등학교 동창회<br>참석 신청서</h1>
     <p class="sub">2026. 12. 26 (토) PM 5:00<br>을지로3가역 근처</p>
-    <p class="deadline">📌 신청 기한: <b>11월 27일 (금)</b>까지</p>
+    <p class="deadline">📌 신청 기한: <b>12월 4일 (금)</b>까지</p>
 
     <fieldset><legend>학생 기본정보</legend>
       <label class="f"><b>이름 <span class="req">*</span></b><input type="text" name="name" maxlength="20" required></label>
@@ -130,7 +130,7 @@ input[type=radio],input[type=checkbox]{width:18px;height:18px;accent-color:#0000
 const ENDPOINT = "https://script.google.com/macros/s/AKfycbyWNg6OvPhi1TrQr7Yj9KasaqsBClE3mj0Jir9w5J_m9sNklQ3apEY6ALr7Ih2dA0_VHA/exec";
 
 // 신청 마감 (이 시각 이후엔 제출 막힘)
-const DEADLINE = new Date('2026-11-27T23:59:59+09:00');
+const DEADLINE = new Date('2026-12-04T23:59:59+09:00');
 const f = document.getElementById('f'), err = document.getElementById('err'), send = document.getElementById('send');
 if(new Date()>DEADLINE){
   f.innerHTML='<div class="marquee"><span>★☆ 제 2회 스잡알 고등학교 동창회 ★☆</span></div><h1>신청이<br>마감되었습니다</h1><p class="sub" style="margin-top:14px">많은 관심 감사합니다.<br>12월 26일 동창회에서 만나요!</p>';
